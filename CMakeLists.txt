@@ -3,4 +3,4 @@ project(multidimensional-array)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(multidimensional-array main.cpp main.cpp mul_array.hpp)
+add_executable(multidimensional-array main.cpp main.cpp multielement_array.hpp)
