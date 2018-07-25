@@ -22,7 +22,10 @@ struct cal_multi<Last>
 template<typename T,int...Args>
 struct Arr
 {
+    Arr(long* pos_ptr,T* arr_ptr)
+    {
 
+    }
 };
 template<typename T,int U,int...Args>
 struct Arr<T,U,Args...>:Arr<T,Args...>
