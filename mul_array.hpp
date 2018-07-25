@@ -19,29 +19,29 @@ struct cal_multi<Last>
     static const int value = Last;
 };
 
-template<typename T,int Dim,int...Args>
+template<typename T,int...Args>
 struct Arr
 {
 
 };
-template<typename T,int Dim,int U,int...Args>
-struct Arr<T,Dim,U,Args...>:Arr<T,Dim,Args...>
+template<typename T,int U,int...Args>
+struct Arr<T,U,Args...>:Arr<T,Args...>
 {
-    Arr(long* pos_ptr = new long(),T* arr_ptr = new T[cal_multi<U,Args...>::value]):Arr<T,Dim,Args...>(pos_ptr,arr_ptr),weight(cal_multi<Args...>::value),_total_size(cal_multi<U,Args...>::value),_pos_ptr(pos_ptr),type_ptr(arr_ptr)
+    Arr(long* pos_ptr = new long(),T* arr_ptr = new T[cal_multi<U,Args...>::value]):Arr<T,Args...>(pos_ptr,arr_ptr),weight(cal_multi<Args...>::value),_total_size(cal_multi<U,Args...>::value),_pos_ptr(pos_ptr),type_ptr(arr_ptr)
     {
     }
-    Arr<T,Dim,Args...>& operator[](int index)
+    Arr<T,Args...>& operator[](int index)
     {
         (*_pos_ptr) += (index * weight);
-        return static_cast<Arr<T,Dim,Args...>&>(*this);
+        return static_cast<Arr<T,Args...>&>(*this);
     }
     int weight;
     int _total_size;
     T* type_ptr = nullptr;
     long* _pos_ptr;
 };
-template<typename T,int Dim,int U>
-struct Arr<T,Dim,U>
+template<typename T,int U>
+struct Arr<T,U>
 {
     Arr(long* pos_ptr = nullptr,T* arr_ptr= nullptr):weight(1),_pos_ptr(pos_ptr),type_ptr(arr_ptr)
     {
@@ -55,6 +55,7 @@ struct Arr<T,Dim,U>
     ~Arr()
     {
         delete []type_ptr;
+        delete _pos_ptr;
     }
     T& operator[](int index)
     {
