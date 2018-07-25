@@ -64,8 +64,7 @@ struct Arr<T,U>
     {
         int tmp_pos = 0;
         if(!single_dim){
-            (*_pos_ptr) += index;
-            tmp_pos = (*_pos_ptr);
+            tmp_pos = (*_pos_ptr) + index;
             (*_pos_ptr) = 0;
         }else{
             tmp_pos = index;
