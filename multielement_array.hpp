@@ -1,5 +1,5 @@
 //
-// Created by dy2018 on 18-7-24.
+// Created by xmh on 18-7-24.
 //
 
 #ifndef STRING_MUL_ArrayAY_HPP
